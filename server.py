@@ -2,6 +2,7 @@ from flask import Flask, request, jsonify, render_template
 import threading
 import backend
 from flask_cors import CORS  # Import CORS
+import os
 
 app = Flask(__name__)
 CORS(app)
@@ -24,6 +25,9 @@ def run_script():
         return jsonify({"message": "Script started"}), 200
     except Exception as e:
         return jsonify({"error": str(e)}), 500
-
+        
 if __name__ == '__main__':
-    app.run(debug=True)
+    # Set host to '0.0.0.0' to listen on all public IPs.
+    # Set port to the environment variable PORT, or 5000 if it's not set.
+    port = int(os.environ.get('PORT', 5000))
+    app.run(host='0.0.0.0', port=port)
