@@ -30,4 +30,4 @@ if __name__ == '__main__':
     # Set host to '0.0.0.0' to listen on all public IPs.
     # Set port to the environment variable PORT, or 5000 if it's not set.
     port = int(os.environ.get('PORT', 5000))
-    app.run(host='100.20.92.101', port=port)
+    app.run(host='0.0.0.0', port=port)
