@@ -3,6 +3,7 @@ import threading
 from flask_cors import CORS  # Import CORS
 import os
 import backend
+import spacy
 
 app = Flask(__name__)
 CORS(app)
