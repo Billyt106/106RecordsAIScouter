@@ -422,7 +422,7 @@ def main(insta_username,password):
     L = instaloader.Instaloader()
 
     with sync_playwright() as p:
-        browser = p.webkit.launch(headless=False)  # Set headless=False to see the browser window
+        browser = p.webkit.launch(headless=True)  # Set headless=False to see the browser window
         page = browser.new_page()
 
         # Navigate to Instagram login page and wait for manual login
