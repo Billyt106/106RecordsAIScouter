@@ -2,6 +2,7 @@ from flask import Flask, request, jsonify, render_template
 import threading
 from flask_cors import CORS  # Import CORS
 import os
+import backend
 
 app = Flask(__name__)
 CORS(app)
