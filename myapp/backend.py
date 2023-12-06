@@ -22,7 +22,7 @@ global url
 
 
 # Load spaCy model for NLP tasks
-nlp = spacy.load("en_core_web_sm")
+nlp = spacy.load("backend")
 
 # Initialize Instaloader and Sentiment Intensity Analyzer
 L = instaloader.Instaloader()
