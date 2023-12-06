@@ -1,6 +1,6 @@
 from flask import Flask, request, jsonify, render_template
 import threading
-import backend
+import /opt/render/project/src/backend
 from flask_cors import CORS  # Import CORS
 import os
 
@@ -10,7 +10,7 @@ CORS(app)
 def index():
     return render_template('/index.html')
 
-@app.route('/backend', methods=['POST'])
+@app.route('/opt/render/project/src/backend', methods=['POST'])
 def run_script():
     try:
         data = request.json
