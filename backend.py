@@ -9,6 +9,8 @@ import nltk
 from nltk.sentiment import SentimentIntensityAnalyzer
 from nltk.tokenize import word_tokenize
 from nltk import pos_tag
+import spacy
+
 
 
 global Data 
