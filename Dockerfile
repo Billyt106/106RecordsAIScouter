@@ -1,30 +1,29 @@
-# Use the official lightweight Node.js 16 image.
-# https://hub.docker.com/_/node
-FROM node:16-slim
+# Use an official Node runtime as a parent image
+FROM node:latest
 
 # Set the working directory in the container
 WORKDIR /usr/src/app
 
-# Copy package.json and package-lock.json to work directory
+# Copy package.json and package-lock.json (if available) into the container
 COPY package*.json ./
 
-# Install dependencies
-# If you're using a yarn.lock file, uncomment the following line and delete the npm install line.
-# RUN yarn install --frozen-lockfile
+# Install any needed packages specified in package.json
 RUN npm install
 
-# Copy the rest of your app's source code from your host to your image filesystem.
-COPY . .
+# If you're building your code for production
+# RUN npm ci --only=production
 
-# Playwright specific steps: 
-# 1. Skip browser download as we'll use installed browsers in the Docker image
-# 2. Install Playwright browsers
-ENV PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD=1
-RUN npx playwright install-deps
+# Install Playwright and its dependencies
 RUN npx playwright install
 
-# Inform Docker that the container is listening on the specified port at runtime.
+# Bundle your app's source code inside the Docker container
+COPY . .
+
+# Make port available to the world outside this container
 EXPOSE 3000
 
-# Run the web service on container startup.
-CMD [ "node", "src/index.js" ]
+# Define environment variable
+ENV PLAYWRIGHT_BROWSERS_PATH /ms-playwright
+
+# Run your app when the container launches
+CMD ["node", "your-app-main-file.js"]
