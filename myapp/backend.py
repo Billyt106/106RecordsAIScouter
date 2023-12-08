@@ -10,7 +10,6 @@ from nltk.sentiment import SentimentIntensityAnalyzer
 from nltk.tokenize import word_tokenize
 from nltk import pos_tag
 import spacy
-from spacy import en_core_web_sm
 
 
 
