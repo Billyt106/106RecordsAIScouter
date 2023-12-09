@@ -1,29 +1,22 @@
-# Use an official Node runtime as a parent image
-FROM node:latest
+# Use the official Python image with a tag specifying the Python version
+FROM python:3.9
 
 # Set the working directory in the container
-WORKDIR /usr/src/app
+WORKDIR /app
 
-# Copy package.json and package-lock.json (if available) into the container
-COPY package*.json ./
+# Copy the dependencies file to the working directory
+COPY requirements.txt .
 
-# Install any needed packages specified in package.json
-RUN npm install
+# Install dependencies
+RUN pip install --no-cache-dir -r requirements.txt
 
-# If you're building your code for production
-# RUN npm ci --only=production
-
-# Install Playwright and its dependencies
-RUN npx playwright install
-
-# Bundle your app's source code inside the Docker container
+# Copy the content of the local src directory to the working directory
 COPY . .
 
-# Make port available to the world outside this container
-EXPOSE 3000
+# Install Playwright and browser dependencies
+RUN pip install playwright
+RUN playwright install
+RUN sudo playwright install-deps
 
-# Define environment variable
-ENV PLAYWRIGHT_BROWSERS_PATH /ms-playwright
-
-# Run your app when the container launches
-CMD ["node", "your-app-main-file.js"]
+# Command to run the application
+CMD ["python", "__innit__.py"]
